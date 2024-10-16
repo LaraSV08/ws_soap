@@ -1,26 +1,27 @@
 <?php 
 include("funciones.inc.php");
 try{
-    $options = array(
-        'location'=>,'http://localhost/ws_soap/server.php',
-        'uri'=>,'urn:departamento',
+    $opciones = array(
+        'location'=>'http://localhost/ws_soap/server.php',
+        'uri'=>'urn:departamento',
         'trace' => true
     );
 
-    $cliente new SoapClient(null,$opciones);
-    if(isset($GET["idz"])){
+    $client = new SoapClient(null,$opciones);
+    if(isset($_GET["idz"])){
         $idz = intval($_GET["idz"]);
         if($idz > 0){
             $respuestas = $client->obtenerDepartamentosPorZona($idz);
         }
     }else{
         $respuestas = $client->obtenerDepartamentos();
+        var_dump($respuestas);
     }
 
     $arreglo = array();
 
     foreach($respuestas as $respuesta){
-        $arreglo[]["departamento"] = aray(
+        $arreglo[]["departamento"] = array(
             "id" => $respuesta["id"],
             "nombre" => $respuesta["departamento"]
         );
@@ -38,7 +39,5 @@ try{
     }
 }catch(Exception $e){
     echo('Error:'.$e->getMessage());
-
 }
-
 ?>

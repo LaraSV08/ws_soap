@@ -5,6 +5,7 @@ class Departamento{
     public $last;
     public function obtenerDepartamentos(){
         $db = new DB('mysql:host=localhost;dbname=catalogos;charset=utf8mb4',"root","admin");
+        var_dump($db);
         $sql = 'SELECT
                     d.id_departamento as id,
                     d.nombre_departamento as departamento,
@@ -32,6 +33,8 @@ class Departamento{
         $data = $db->run($sql)->fetchAll();
         return $data;
     }
+
+
 
     public function obtenerDepartamento($iddepto){
         $db = new DB('mysql:host=localhost;dbname=catalogos;charset=utf8mb4',"root","admin");

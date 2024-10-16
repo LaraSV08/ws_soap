@@ -10,7 +10,7 @@ class DB extends PDO{
         parent::__construct($dsn,$username,$password,$options);
     }
 
-    public function run($sql,$args){
+    public function run($sql,$args=NULL){
         if($args){
             return $this->query($sql);
         }
